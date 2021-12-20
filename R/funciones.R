@@ -26,7 +26,7 @@ formato_robot <- function(robot, StartDay, EndDay){
   robot = stats::aggregate(robot$Retorno, by=list(Fecha=robot$Fecha), FUN=sum)
   rownames(robot) = robot$Fecha
   colnames(robot) <- c('Fecha',"Retorno")
-  robot = stats::as.xts(robot)
+  robot = xts::as.xts(robot)
   robot = robot[,c(2)]
   robot = as.data.frame(robot)
   robot$Retorno = as.numeric(robot$Retorno)
