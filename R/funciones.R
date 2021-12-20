@@ -30,7 +30,7 @@ formato_robot <- function(robot, StartDay, EndDay){
   robot = robot[,c(2)]
   robot = as.data.frame(robot)
   robot$Retorno = as.numeric(robot$Retorno)
-  robot = stats::as.xts(robot)
+  robot = xts::as.xts(robot)
   robot = stats::window(robot, start = StartDay, end = EndDay)
 
   return(robot)
