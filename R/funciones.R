@@ -13,6 +13,7 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+
 formato_robot <- function(robot, StartDay, EndDay){
   robot = robot[,c(2,6)]
   colnames(robot) <- c('Fecha',"Retorno")
@@ -22,15 +23,16 @@ formato_robot <- function(robot, StartDay, EndDay){
   robot$Retorno = gsub(",", ".", robot$Retorno)
   robot$Retorno = gsub("%", "", robot$Retorno)
   robot$Retorno = as.numeric(robot$Retorno) / 100
-  robot = aggregate(robot$Retorno, by=list(Fecha=robot$Fecha), FUN=sum)
+  robot = stats::aggregate(robot$Retorno, by=list(Fecha=robot$Fecha), FUN=sum)
   rownames(robot) = robot$Fecha
   colnames(robot) <- c('Fecha',"Retorno")
-  robot = as.xts(robot)
+  robot = stats::as.xts(robot)
   robot = robot[,c(2)]
   robot = as.data.frame(robot)
   robot$Retorno = as.numeric(robot$Retorno)
-  robot = as.xts(robot)
-  robot = window(robot, start = StartDay, end = EndDay)
+  robot = stats::as.xts(robot)
+  robot = stats::window(robot, start = StartDay, end = EndDay)
 
   return(robot)
 }
+
