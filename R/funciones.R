@@ -35,10 +35,21 @@ formato_robot <- function(robot, StartDay, EndDay){
 
   return(robot)
 }
+InerciaAlista = function(stock,ROC1,ROC2,nATR,nMA){
 
-  test_function <- function(frase){
+  tmp = stock
 
+  tmp$ROC1 <- round(ROC(Cl(tmp), n=ROC1) *0.4, 4)
+  tmp$ROC2 <- round(ROC(Cl(tmp), n=ROC2) *0.2, 4)
 
-    return(frase)
+  tmp$F1 <- tmp$ROC1 + tmp$ROC2
+  tmp$ATR <- round(ATR(HLC(tmp), nATR)[, "atr"], 4)
+
+  tmp$MEDIA <- round(EMA(Cl(tmp),nMA), 4)
+
+  tmp$F2 <- round((tmp$ATR / tmp$MEDIA) * 0.4, 4)
+
+  return (round((tmp$F1 / tmp$F2), 4))
+
 }
 
