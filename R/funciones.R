@@ -36,3 +36,9 @@ formato_robot <- function(robot, StartDay, EndDay){
   return(robot)
 }
 
+  test_function <- function(frase){
+
+
+    return(frase)
+}
+
