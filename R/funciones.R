@@ -35,7 +35,7 @@ formato_robot <- function(robot, StartDay, EndDay){
 
   return(robot)
 }
-InerciaAlista = function(stock,ROC1,ROC2,nATR,nMA){
+InerciaAlcista = function(stock,ROC1,ROC2,nATR,nMA){
 
   tmp = stock
 
